@@ -1,0 +1,68 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #111 0%, #000 70%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+/* Login / Register box */
+.auth-box {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+/* Title */
+.auth-box h2 {
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.auth-box input,
+.auth-box select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+/* Button */
+.auth-box button {
+  width: 100%;
+  padding: 10px;
+  background: #6a00ff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.auth-box button:hover {
+  background: #5200cc;
+}
+
+/* Links */
+.auth-box a {
+  display: block;
+  margin-top: 10px;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.auth-box a:hover {
+  color: white;
+}
