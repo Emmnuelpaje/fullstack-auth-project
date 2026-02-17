@@ -2,47 +2,33 @@
 CREATE DATABASE IF NOT EXISTS hospital_db;
 USE hospital_db;
 
--- PERSON
-CREATE TABLE Person (
-    person_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    gender ENUM('male','female','other'),
-    birth_date DATE,
-    contact_no VARCHAR(20),
-    address VARCHAR(100)
-);
 
-DESCRIBE Person;
-SELECT * FROM Person;
-
-
-x
 -- DEPARTMENT
-
 CREATE TABLE Department (
     dept_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL,
-    head_id INT,
-    FOREIGN KEY (head_id) REFERENCES Person(person_id)
+    head_id INT
 );
 
 DESCRIBE Department;
 SELECT * FROM Department;
 
 
--- ======================
 -- EMPLOYEE
--- ======================
+
 CREATE TABLE Employee (
     emp_id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT UNIQUE,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender ENUM('male','female','other'),
+    birth_date DATE,
+    contact_no VARCHAR(20),
+    address VARCHAR(100),
     position VARCHAR(50) NOT NULL,
     department_id INT,
     hire_date DATE,
     status ENUM('active','inactive','on_leave') DEFAULT 'active',
     shift_schedule VARCHAR(50),
-    FOREIGN KEY (person_id) REFERENCES Person(person_id),
     FOREIGN KEY (department_id) REFERENCES Department(dept_id)
 );
 
@@ -50,36 +36,39 @@ DESCRIBE Employee;
 SELECT * FROM Employee;
 
 
-
 -- DOCTOR
 
 CREATE TABLE Doctor (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT UNIQUE,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender ENUM('male','female','other'),
     specialty VARCHAR(50) NOT NULL,
     license_no VARCHAR(20) UNIQUE NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+    contact_no VARCHAR(20)
 );
 
 DESCRIBE Doctor;
 SELECT * FROM Doctor;
 
 
-
 -- PATIENT
 
 CREATE TABLE Patient (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT UNIQUE,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender ENUM('male','female','other'),
+    birth_date DATE,
+    contact_no VARCHAR(20),
+    address VARCHAR(100),
     blood_type VARCHAR(5) DEFAULT 'Unknown',
     patient_type ENUM('inpatient','outpatient','walkin') NOT NULL,
-    registration_type ENUM('appointment','walkin') NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES Person(person_id)
+    registration_type ENUM('appointment','walkin') NOT NULL
 );
 
 DESCRIBE Patient;
 SELECT * FROM Patient;
-
 
 
 -- BED
@@ -136,6 +125,7 @@ SELECT * FROM Admission;
 
 
 -- MEDICAL RECORD
+
 CREATE TABLE MedicalRecord (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
@@ -149,6 +139,7 @@ CREATE TABLE MedicalRecord (
 
 DESCRIBE MedicalRecord;
 SELECT * FROM MedicalRecord;
+
 
 
 -- BILLING
