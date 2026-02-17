@@ -13,7 +13,13 @@ CREATE TABLE Person (
     address VARCHAR(100)
 );
 
+DESCRIBE Person;
+SELECT * FROM Person;
+
+
+x
 -- DEPARTMENT
+
 CREATE TABLE Department (
     dept_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL,
@@ -21,7 +27,13 @@ CREATE TABLE Department (
     FOREIGN KEY (head_id) REFERENCES Person(person_id)
 );
 
+DESCRIBE Department;
+SELECT * FROM Department;
+
+
+-- ======================
 -- EMPLOYEE
+-- ======================
 CREATE TABLE Employee (
     emp_id INT AUTO_INCREMENT PRIMARY KEY,
     person_id INT UNIQUE,
@@ -34,7 +46,13 @@ CREATE TABLE Employee (
     FOREIGN KEY (department_id) REFERENCES Department(dept_id)
 );
 
+DESCRIBE Employee;
+SELECT * FROM Employee;
+
+
+
 -- DOCTOR
+
 CREATE TABLE Doctor (
     doctor_id INT AUTO_INCREMENT PRIMARY KEY,
     person_id INT UNIQUE,
@@ -43,7 +61,13 @@ CREATE TABLE Doctor (
     FOREIGN KEY (person_id) REFERENCES Person(person_id)
 );
 
+DESCRIBE Doctor;
+SELECT * FROM Doctor;
+
+
+
 -- PATIENT
+
 CREATE TABLE Patient (
     patient_id INT AUTO_INCREMENT PRIMARY KEY,
     person_id INT UNIQUE,
@@ -53,7 +77,13 @@ CREATE TABLE Patient (
     FOREIGN KEY (person_id) REFERENCES Person(person_id)
 );
 
+DESCRIBE Patient;
+SELECT * FROM Patient;
+
+
+
 -- BED
+
 CREATE TABLE Bed (
     bed_id INT AUTO_INCREMENT PRIMARY KEY,
     room_no VARCHAR(10) NOT NULL,
@@ -61,7 +91,13 @@ CREATE TABLE Bed (
     ward VARCHAR(30)
 );
 
+DESCRIBE Bed;
+SELECT * FROM Bed;
+
+
+
 -- APPOINTMENT
+
 CREATE TABLE Appointment (
     appt_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
@@ -73,7 +109,13 @@ CREATE TABLE Appointment (
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
+DESCRIBE Appointment;
+SELECT * FROM Appointment;
+
+
+
 -- ADMISSION
+
 CREATE TABLE Admission (
     admission_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
@@ -88,6 +130,11 @@ CREATE TABLE Admission (
     FOREIGN KEY (assigned_nurse_id) REFERENCES Employee(emp_id)
 );
 
+DESCRIBE Admission;
+SELECT * FROM Admission;
+
+
+
 -- MEDICAL RECORD
 CREATE TABLE MedicalRecord (
     record_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -100,7 +147,12 @@ CREATE TABLE MedicalRecord (
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
+DESCRIBE MedicalRecord;
+SELECT * FROM MedicalRecord;
+
+
 -- BILLING
+
 CREATE TABLE Billing (
     bill_id INT AUTO_INCREMENT PRIMARY KEY,
     patient_id INT,
@@ -110,3 +162,6 @@ CREATE TABLE Billing (
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
     FOREIGN KEY (admission_id) REFERENCES Admission(admission_id)
 );
+
+DESCRIBE Billing;
+SELECT * FROM Billing;
